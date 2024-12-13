@@ -9,6 +9,9 @@ namespace MagicVilla_API.Modelos.Dto
         
         [Required] // para añadir una clase con ctrl + .
         [MaxLength(30)]
-        public string Nombre { get; set; } // para añadir una variable con prop tab tab
+        public string Nombre { get; set; } // para añadir una propiedad con prop tab tab
+
+        public int Ocupantes { get; set; }
+        public int MetrosCuadrados { get; set; }
     }
 }

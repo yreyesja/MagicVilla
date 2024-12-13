@@ -92,5 +92,23 @@ namespace MagicVilla_API.Controllers
 
             return NoContent(); //Este siempre se utiliza cuando se esta trabajando con DELETE 
         }
+
+        [HttpPut("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult UpdateVilla(int id, [FromBody] VillaDto villaDto)//recibe como parametro el Id, todo el objeto de tipo VillaDto y nombre villaDto
+        {
+            if (villaDto==null || id!= villaDto.Id) //si el objeto que recibe es nulo o si el id es diferente dentro del objeto villaDto, hacemos un return BadRequest
+            {
+                return BadRequest();
+            }
+            var villa = VillaStore.villaList.FirstOrDefault(v => v.Id == id); //se necesita capturar el registro antes de grabarlo
+            villa.Nombre = villaDto.Nombre;
+            villa.Ocupantes = villaDto.Ocupantes;
+            villa.MetrosCuadrados = villaDto.MetrosCuadrados;
+
+            return NoContent();
+        }
+
     }
 }
